@@ -1,138 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SEO Automation Request</title>
+  <title>🚀 SEO Automation Trigger</title>
   <style>
-    /* Reset & Base */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 16px; }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #4A90E2 0%, #9013FE 100%);
       display: flex;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: linear-gradient(135deg, #2c3e50, #4ca1af);
+      color: #fff;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      padding: 1rem;
-      color: #333;
-    }
-    /* Card */
-    .form-card {
-      background: #fff;
-      border-radius: 1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 500px;
-      padding: 2rem;
-      animation: fadeIn 0.6s ease-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      flex-direction: column;
+      text-align: center;
     }
     h1 {
-      text-align: center;
-      font-size: 1.75rem;
-      color: #4A90E2;
-      margin-bottom: 1.5rem;
+      margin-bottom: 10px;
+      animation: fadeIn 1s ease-in-out;
     }
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: 600;
-      color: #555;
+    p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      animation: fadeIn 1.5s ease-in-out;
     }
-    input, select, textarea, button {
-      width: 100%;
-      border: 2px solid #ddd;
-      border-radius: 0.5rem;
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: #4A90E2;
-      box-shadow: 0 0 0 3px rgba(74,144,226,0.2);
-      outline: none;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-    small {
-      display: block;
-      margin-top: 0.25rem;
-      color: #888;
-      font-size: 0.875rem;
-    }
-    button {
-      background: #4A90E2;
-      color: #fff;
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: #2c3e50;
+      background: #ebf8ff;
       border: none;
-      margin-top: 2rem;
-      font-weight: 600;
+      border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      animation: pulse 2s infinite;
+      transition: background 0.3s, transform 0.2s;
     }
-    button:hover { background: #357ABD; }
-    button:active { transform: scale(0.98); }
-    @media (max-width: 480px) {
-      .form-card { padding: 1.5rem; }
-      h1 { font-size: 1.5rem; }
+    .btn:hover {
+      background: #fff;
+      transform: translateY(-3px);
     }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(235,248,255, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(235,248,255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(235,248,255, 0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+    .success { color: #a0e7a0; }
+    .error { color: #f96; }
   </style>
 </head>
 <body>
-  <div class="form-card">
-    <h1>SEO Automation Request</h1>
-    <form method="POST" action="http://localhost:5678/webhook/df32d2af-749d-498d-8448-e2d07fbf7211">
-      <!-- Client Name -->
-      <label for="clientName">Client Name</label>
-      <input type="text" id="clientName" name="clientName" placeholder="e.g. Acme Corp" required />
 
-      <!-- Website URL -->
-      <label for="websiteUrl">Website URL</label>
-      <input type="url" id="websiteUrl" name="websiteUrl" placeholder="https://example.com" required />
+  <h1>SEO Automation Trigger</h1>
+  <p>Klik tombol di bawah untuk memicu workflow SEO via Make.com</p>
+  <button class="btn" id="triggerBtn">Trigger 🚀</button>
+  <div class="feedback" id="feedback"></div>
 
-      <!-- Primary Keyword -->
-      <label for="primaryKeyword">Primary Keyword</label>
-      <input type="text" id="primaryKeyword" name="primaryKeyword" placeholder="e.g. Eco Friendly Packaging" required />
+  <script>
+    const btn = document.getElementById('triggerBtn');
+    const feedback = document.getElementById('feedback');
+    const webhookUrl = 'https://hook.us2.make.com/ff2eelku855huosgad1klh8kxqk3vnsd';
 
-      <!-- Secondary Keywords -->
-      <label for="secondaryKeywords">Secondary Keywords (comma separated)</label>
-      <textarea id="secondaryKeywords" name="secondaryKeywords" placeholder="sustainable boxes, biodegradable packaging"></textarea>
+    async function fireWebhook() {
+      feedback.textContent = 'Mengirim...';
+      feedback.className = 'feedback';
+      btn.disabled = true;
 
-      <!-- Content Type -->
-      <label for="contentType">Content Type</label>
-      <select id="contentType" name="contentType" required>
-        <option value="blogPost">Blog Post</option>
-        <option value="landingPage">Landing Page</option>
-        <option value="productPage">Product Page</option>
-      </select>
+      try {
+        const resp = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            message: 'User triggered SEO workflow'
+          })
+        });
+        if (resp.ok) {
+          feedback.textContent = '✔️ Trigger sukses! Workflow berjalan.';
+          feedback.classList.add('success');
+        } else {
+          throw new Error(`HTTP ${resp.status}`);
+        }
+      } catch (err) {
+        feedback.textContent = `✖ Terjadi error: ${err.message}`;
+        feedback.classList.add('error');
+      } finally {
+        btn.disabled = false;
+      }
+    }
 
-      <!-- Desired Leads -->
-      <label for="desiredLeads">Desired Leads</label>
-      <input type="number" id="desiredLeads" name="desiredLeads" min="1" max="1000" value="100" required />
-      <small>Number of leads to generate (max 1000)</small>
+    btn.addEventListener('click', fireWebhook);
+  </script>
 
-      <!-- Region -->
-      <label for="region">Region</label>
-      <input type="text" id="region" name="region" placeholder="e.g. United States" />
-
-      <!-- Competitor URLs -->
-      <label for="competitorUrls">Competitor URLs (one per line)</label>
-      <textarea id="competitorUrls" name="competitorUrls" placeholder="https://competitor1.com
-https://competitor2.com"></textarea>
-
-      <!-- Publish Endpoint -->
-      <label for="publishEndpoint">Publish Endpoint (WordPress API URL)</label>
-      <input type="url" id="publishEndpoint" name="publishEndpoint" placeholder="https://example.com/wp-json/wp/v2/posts" />
-
-      <!-- Submit -->
-      <button type="submit">Submit Request</button>
-    </form>
-  </div>
 </body>
 </html>
