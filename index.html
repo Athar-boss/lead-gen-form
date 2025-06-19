@@ -1,105 +1,148 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🚀 SEO Automation Trigger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contact Form</title>
   <style>
     body {
-      display: flex;
-      height: 100vh;
-      margin: 0;
       font-family: 'Segoe UI', Tahoma, sans-serif;
-      background: linear-gradient(135deg, #2c3e50, #4ca1af);
-      color: #fff;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      background: #f5f7fa;
+      display: flex; justify-content: center; align-items: center;
+      height: 100vh; margin: 0;
+    }
+    form {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      width: 100%; max-width: 400px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    h2 {
+      margin-top: 0;
+      font-weight: normal;
+      color: #333;
       text-align: center;
+      animation: slideDown 0.6s ease-in-out;
     }
-    h1 {
-      margin-bottom: 10px;
-      animation: fadeIn 1s ease-in-out;
+    .field-group {
+      margin-bottom: 1.2rem;
+      position: relative;
+      animation: fadeInUp 0.6s ease-in-out;
+      animation-delay: calc(0.1s * var(--i));
+      animation-fill-mode: both;
     }
-    p {
-      margin-bottom: 30px;
-      font-size: 1.1rem;
-      animation: fadeIn 1.5s ease-in-out;
+    label {
+      display: block; margin-bottom: 0.3rem;
+      color: #555;
     }
-    .btn {
-      padding: 15px 30px;
-      font-size: 1.2rem;
-      color: #2c3e50;
-      background: #ebf8ff;
+    input, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 4px;
+      border: 1px solid #d1d5db;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background: #3b82f6;
+      color: #fff;
       border: none;
-      border-radius: 50px;
+      border-radius: 4px;
+      font-size: 1rem;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      animation: pulse 2s infinite;
-      transition: background 0.3s, transform 0.2s;
+      transition: background-color 0.2s;
+      animation: fadeInUp 0.6s ease-in-out;
+      animation-delay: 0.4s;
+      animation-fill-mode: both;
     }
-    .btn:hover {
-      background: #fff;
-      transform: translateY(-3px);
+    button:hover {
+      background: #2563eb;
     }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(235,248,255, 0.7); }
-      70% { box-shadow: 0 0 0 20px rgba(235,248,255, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(235,248,255, 0); }
+    .thanks {
+      text-align: center;
+      padding: 2rem;
+      background: #d1fae5;
+      color: #065f46;
+      border-radius: 8px;
+      animation: popIn 0.4s ease-out;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: scale(0.9) }
+      to { opacity: 1; transform: scale(1) }
     }
-    .feedback {
-      margin-top: 20px;
-      font-size: 0.9rem;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px) }
+      to { opacity: 1; transform: translateY(0) }
     }
-    .success { color: #a0e7a0; }
-    .error { color: #f96; }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8) }
+      to { opacity: 1; transform: scale(1) }
+    }
   </style>
 </head>
 <body>
 
-  <h1>SEO Automation Trigger</h1>
-  <p>Klik tombol di bawah untuk memicu workflow SEO via Make.com</p>
-  <button class="btn" id="triggerBtn">Trigger 🚀</button>
-  <div class="feedback" id="feedback"></div>
+  <form id="contact-form" method="POST" action="https://hook.us2.make.com/ff2eelku855huosgad1klh8kxqk3vnsd">
+    <h2>Let’s get in touch</h2>
+
+    <div class="field-group" style="--i:1">
+      <label for="name">Your Name</label>
+      <input type="text" name="name" id="name" required placeholder="Alex Smith">
+    </div>
+
+    <div class="field-group" style="--i:2">
+      <label for="email">Your Email</label>
+      <input type="email" name="email" id="email" required placeholder="you@example.com">
+    </div>
+
+    <div class="field-group" style="--i:3">
+      <label for="message">Message</label>
+      <textarea name="message" id="message" rows="4" required placeholder="Tell us what you're after…"></textarea>
+    </div>
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <div id="thank-you" class="thanks" hidden>
+    <h2>Thanks for reaching out!</h2>
+    <p>We’ll get back to you shortly.</p>
+  </div>
 
   <script>
-    const btn = document.getElementById('triggerBtn');
-    const feedback = document.getElementById('feedback');
-    const webhookUrl = 'https://hook.us2.make.com/ff2eelku855huosgad1klh8kxqk3vnsd';
+    const form = document.getElementById('contact-form');
+    const thanks = document.getElementById('thank-you');
 
-    async function fireWebhook() {
-      feedback.textContent = 'Mengirim...';
-      feedback.className = 'feedback';
-      btn.disabled = true;
-
-      try {
-        const resp = await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            timestamp: new Date().toISOString(),
-            message: 'User triggered SEO workflow'
-          })
-        });
-        if (resp.ok) {
-          feedback.textContent = '✔️ Trigger sukses! Workflow berjalan.';
-          feedback.classList.add('success');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data
+      })
+      .then(r => {
+        if (r.ok) {
+          form.style.display = 'none';
+          thanks.hidden = false;
         } else {
-          throw new Error(`HTTP ${resp.status}`);
+          alert('Oops! Something went wrong.');
         }
-      } catch (err) {
-        feedback.textContent = `✖ Terjadi error: ${err.message}`;
-        feedback.classList.add('error');
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
-    btn.addEventListener('click', fireWebhook);
+      })
+      .catch(err => alert('Network error: ' + err.message));
+    });
   </script>
 
 </body>
